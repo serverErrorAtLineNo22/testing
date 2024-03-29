@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration - Student Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Add your custom styles here to match the provided template */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+        }
+        .form-button {
+            background: linear-gradient(180deg, #808080, #2a2a2a);
+            border: none;
+            border-radius: 0;
+            color: white;
+            display: inline-block;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .form-label {
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>User Registration</h2>
+    <form id="User_Registration_Form" th:action="@{/admin/register}" th:object="${admin}" method="post" th:method="post" enctype="multipart/form-data">
+        <label for="adminName" class="form-label">Admin name</label>
+        <input type="text" th:field="*{name}" class="form-control" id="adminName" name="adminName" required>
+        <label for="email" class="form-label">Email</label>
+        <input type="email" th:field="*{email}" class="form-control" id="email" name="email" required>
+        <label for="dob" class="form-label">Date of Birth</label>
+        <input type="date" th:field="*{dob}" class="form-control" id="dob" name="dob" required>
+        <label for="password" class="form-label">Password</label>
+        <input type="password" th:field="*{password}" class="form-control" id="password" name="password" required>
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+        <label for="photo">Photo</label>
+        <input type="file" id="photo" name="photo" th:field="*{file}" accept="image/**" multiple  required>
+        <div class="field-row">
+            <label class="form-label"></label>
+            <button class="form-button" type="submit" style=" background: linear-gradient(180deg, #4caf50, #45a049)">Register</button>
+            <button class="form-button" type="button" onclick="resetForm()" style=" background: linear-gradient(180deg, #ff0000, #ff0000)">Reset</button>
+            <button class="form-button" type="button" onclick="window.location.href='http://localhost:8080/home'">Cancel</button>
+        </div>
+    </form>
+</div>
+<script>
+    function resetForm() {
+        document.getElementById("User_Registration_Form").reset();
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
